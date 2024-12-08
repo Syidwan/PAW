@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth/core": "^0.37.4",
     "@auth/prisma-adapter": "^2.7.4",
     "@prisma/client": "^6.0.1",
     "bcrypt-ts": "^5.0.3",
@@ -24,6 +25,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "daisyui": "^4.12.14",
     "eslint": "^8",
     "eslint-config-next": "15.0.4",
     "postcss": "^8",

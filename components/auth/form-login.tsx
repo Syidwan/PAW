@@ -3,16 +3,14 @@
 import { useActionState } from "react";
 import Link from "next/link";
 import { useState } from "react";
-import { signUpCredentials } from "@/lib/actions";
-import { RegisterButton } from "../button";
+import { signInCredentials } from "@/lib/actions";
+import { LoginButton, RegisterButton } from "../button";
 
-const FormRegister = () => {
-  const [state, formAction] = useActionState(signUpCredentials, null);
+const FormLogin = () => {
+  const [state, formAction] = useActionState(signInCredentials, null);
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
     password: "",
-    ConfirmPassword: "",
   });
 
   const handleChange = (e: { target: { name: any; value: any } }) => {
@@ -34,27 +32,7 @@ const FormRegister = () => {
         </div>
       ) : null}
 
-      <div>
-        <label
-          htmlFor="name"
-          className="block mb-2 text-sm font-medium text-gray-900"
-        >
-          Name
-        </label>
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          placeholder="John Doe"
-          className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg w-full p-2.5"
-        />
-        <div aria-live="polite" aria-atomic="true">
-          <span className="text-sm text-red-500 mt-2">
-            {state?.error?.name}
-          </span>
-        </div>
-      </div>
+
       <div>
         <label
           htmlFor="email"
@@ -97,33 +75,13 @@ const FormRegister = () => {
           </span>
         </div>
       </div>
-      <div>
-        <label
-          htmlFor="ConfirmPassword"
-          className="block mb-2 text-sm font-medium text-gray-900"
-        >
-          Confirm Password
-        </label>
-        <input
-          type="password"
-          name="ConfirmPassword"
-          value={formData.ConfirmPassword}
-          onChange={handleChange}
-          placeholder="*******"
-          className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg w-full p-2.5"
-        />
-        <div aria-live="polite" aria-atomic="true">
-          <span className="text-sm text-red-500 mt-2">
-            {state?.error?.ConfirmPassword}
-          </span>
-        </div>
-      </div>
-      <RegisterButton />
+
+      <LoginButton />
       <p className="text-sm font-light text-gray-500">
-        Already have an account?
-        <Link href="/login">
+         Don&apos;t have an account yet?
+        <Link href="/register">
           <span className="font-medium pl-1 text-blue-600 hover:text-blue-700">
-            Sign in
+            Sign Up here
           </span>
         </Link>
       </p>
@@ -131,4 +89,4 @@ const FormRegister = () => {
   );
 };
 
-export default FormRegister;
+export default FormLogin;
