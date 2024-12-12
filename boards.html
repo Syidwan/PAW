@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PAW Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-b from-[#70C3FF] via-[#70C3FF] to-[#266CA9]">
+  <div class="flex flex-col h-screen">
+     <!-- Header -->
+     <header class="w-full flex justify-between items-center bg-white p-2 shadow h-12">
+      <div class="flex items-center space-x-8 ml-6">
+        <img src="public/img/Logo.png" alt="PAW Logo" class="h-8">
+        <div class="flex items-center space-x-0.5">
+          <button class="px-2 py-1 text-sm hover:text-blue-500">Recent </button>
+          <img src="public/img/drop.png" alt="Recent Icon" class="w-3 h-2">
+        </div>
+        <div class="flex items-center space-x-0.5">
+          <button class="px-2 py-1 text-sm hover:text-blue-500">Starred </button>
+          <img src="public/img/drop.png" alt="Starred Icon" class="w-3 h-2">
+        </div>
+        <button onclick="location.href='create.html'" class="bg-[#041D56] text-white px-3 py-1 rounded-lg ml-9 hover:bg-[#70C3FF]">Create</button>
+      </div>
+      <div class="flex items-center space-x-0.1 mr-4">
+        <!-- Button Notifications -->
+        <button onclick="location.href='notifications.html'" class="hover:bg-gray-100 p-2 rounded-full">
+          <img src="public/img/notip.png" alt="Notifications" class="w-6 h-6">
+        </button>
+        <!-- Button Help -->
+        <button onclick="location.href='help.html'" class="hover:bg-gray-100 p-2 rounded-full">
+          <img src="public/img/help.png" alt="Help" class="w-6 h-6">
+        </button>
+        <!-- Button User -->
+        <button onclick="location.href='user.html'" class="hover:bg-gray-100 p-2 rounded-full">
+          <img src="public/img/user.png" alt="User" class="w-6 h-6">
+        </button>
+      </div>
+    </header>
+    
+    <div class="flex flex-1">
+      <!-- Sidebar -->
+      <aside class="bg-gray-200 w-1/5 p-4">
+        <nav>
+          <ul>
+            <li class="mb-4">
+              <button onclick="location.href='boards.html'" class="bg-[#041D56] text-white px-4 py-2 rounded w-full hover:bg-[#70C3FF]">Boards</button>
+            </li>
+            <li>
+              <button onclick="location.href='home.html'" class="px-4 py-2 rounded w-full hover:bg-[#70C3FF]">Home</button>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1 p-6">
+
+        <!-- Projects Grid -->
+        <div class="grid grid-cols-3 gap-6">
+          <!-- Repeatable Project Cards -->
+          <div onclick="location.href='project1.html'" class="bg-cover bg-center h-40 shadow-md relative" style="background-image: url('public/img/bg\ project.png');">
+            <div class="absolute inset-0 bg-black bg-opacity-50">
+              <h2 class="text-white text-lg font-bold absolute top-2 left-2">My Project 1</h2>
+            </div>
+            <img src="public/img/partisipasi.png" alt="Type" class="absolute bottom-2 left-2 w-6 h-6">
+          </div>
+          <!-- Copy above block for additional projects -->
+          <div onclick="location.href='project2.html'" class="bg-cover bg-center h-40 shadow-md relative" style="background-image: url('public/img/bg\ project.png');">
+            <div class="absolute inset-0 bg-black bg-opacity-50">
+              <h2 class="text-white text-lg font-bold absolute top-2 left-2">My Project 2</h2>
+            </div>
+            <img src="public/img/partisipasi.png" alt="Type" class="absolute bottom-2 left-2 w-6 h-6">
+          </div>
+          <div onclick="location.href='project3.html'" class="bg-cover bg-center h-40 shadow-md relative" style="background-image: url('public/img/bg\ project.png');">
+            <div class="absolute inset-0 bg-black bg-opacity-50">
+              <h2 class="text-white text-lg font-bold absolute top-2 left-2">My Project 3</h2>
+            </div>
+            <img src="public/img/partisipasi.png" alt="Type" class="absolute bottom-2 left-2 w-6 h-6">
+          </div>
+          <div onclick="location.href='project4.html'" class="bg-cover bg-center h-40 shadow-md relative" style="background-image: url('public/img/bg\ project.png');">
+            <div class="absolute inset-0 bg-black bg-opacity-50">
+              <h2 class="text-white text-lg font-bold absolute top-2 left-2">My Project 4</h2>
+            </div>
+            <img src="public/img/partisipasi.png" alt="Type" class="absolute bottom-2 left-2 w-6 h-6">
+          </div>
+          <div onclick="location.href='project5.html'" class="bg-cover bg-center h-40 shadow-md relative" style="background-image: url('public/img/bg\ project.png');">
+            <div class="absolute inset-0 bg-black bg-opacity-50">
+              <h2 class="text-white text-lg font-bold absolute top-2 left-2">My Project 5</h2>
+            </div>
+            <img src="public/img/partisipasi.png" alt="Type" class="absolute bottom-2 left-2 w-6 h-6">
+          </div>
+          <div onclick="location.href='project6.html'" class="bg-cover bg-center h-40 shadow-md relative" style="background-image: url('public/img/bg\ project.png');">
+            <div class="absolute inset-0 bg-black bg-opacity-50">
+              <h2 class="text-white text-lg font-bold absolute top-2 left-2">My Project 6</h2>
+            </div>
+            <img src="public/img/partisipasi.png" alt="Type" class="absolute bottom-2 left-2 w-6 h-6">
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
