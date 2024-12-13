@@ -9,7 +9,7 @@ const Login = () => {
         <div className="flex flex-col items-center justify-center">
           <h1 className="text-xl font-semibold">Log in</h1>
           <div className="text-gray-400">
-            Don't have an account yet?
+            Don&apos;t have an account yet?
             <Link
               href="/register"
               className="text-xs font-semibold text-black underline"
