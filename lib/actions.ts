@@ -46,7 +46,13 @@ export const signInCredentials = async (prevState: unknown, formData: FormData) 
    const { email, password } = validatedFields.data
 
    try {
-      await signIn("credentials", { email, password, redirectTo:"/dashboard" })
+      const user = await prisma.user.findUnique({
+         where: { email }
+      });
+      if (!user) {
+         return { message: "User not found." };
+      }
+      await signIn("credentials", { email, password, redirectTo:`/dashboard/${user.id}` })
    } catch (error) {
       if (error instanceof AuthError) {
          switch (error.type) { 

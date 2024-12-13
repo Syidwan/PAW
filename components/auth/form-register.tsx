@@ -24,7 +24,7 @@ const FormRegister = () => {
   };
 
   return (
-    <form action={formAction} className="space-y-6">
+    <form action={formAction} className="mt-4">
       {state?.message ? (
         <div
           className="p-4 mb-4 text-sm text-red-800 bg-red-100 rounded-lg"
@@ -34,10 +34,10 @@ const FormRegister = () => {
         </div>
       ) : null}
 
-      <div>
+      <div className="mb-3">
         <label
           htmlFor="name"
-          className="block mb-2 text-sm font-medium text-gray-900"
+          className="mb-2 block text-xs font-regular"
         >
           Name
         </label>
@@ -46,8 +46,8 @@ const FormRegister = () => {
           name="name"
           value={formData.name}
           onChange={handleChange}
-          placeholder="John Doe"
-          className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg w-full p-2.5"
+          placeholder="Enter Your Name"
+          className="block w-full rounded-md border border-gray-300 focus:border-blue-200 focus:outline-none focus:ring-1 focus:ring-blue-200 py-1 px-2 text-black"
         />
         <div aria-live="polite" aria-atomic="true">
           <span className="text-sm text-red-500 mt-2">
@@ -55,10 +55,10 @@ const FormRegister = () => {
           </span>
         </div>
       </div>
-      <div>
+      <div className="mb-3">
         <label
           htmlFor="email"
-          className="block mb-2 text-sm font-medium text-gray-900"
+          className="mb-2 block text-xs font-regular"
         >
           Email
         </label>
@@ -67,8 +67,8 @@ const FormRegister = () => {
           name="email"
           value={formData.email}
           onChange={handleChange}
-          placeholder="john.doe@example.com"
-          className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg w-full p-2.5"
+          placeholder="Email"
+          className="block w-full rounded-md border border-gray-300 focus:border-blue-200 focus:outline-none focus:ring-1 focus:ring-blue-200 py-1 px-1.5 text-black"
         />
         <div aria-live="polite" aria-atomic="true">
           <span className="text-sm text-red-500 mt-2">
@@ -76,10 +76,10 @@ const FormRegister = () => {
           </span>
         </div>
       </div>
-      <div>
+      <div className="mb-3">
         <label
           htmlFor="password"
-          className="block mb-2 text-sm font-medium text-gray-900"
+          className="mb-2 block text-xs font-regular"
         >
           Password
         </label>
@@ -97,10 +97,10 @@ const FormRegister = () => {
           </span>
         </div>
       </div>
-      <div>
+      <div className="mb-3">
         <label
           htmlFor="ConfirmPassword"
-          className="block mb-2 text-sm font-medium text-gray-900"
+          className="mb-2 block text-xs font-regular"
         >
           Confirm Password
         </label>
@@ -110,7 +110,7 @@ const FormRegister = () => {
           value={formData.ConfirmPassword}
           onChange={handleChange}
           placeholder="*******"
-          className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg w-full p-2.5"
+          className="block w-full rounded-md border border-gray-300 focus:border-blue-200 focus:outline-none focus:ring-1 focus:ring-blue-200 py-1 px-1.5 text-black"
         />
         <div aria-live="polite" aria-atomic="true">
           <span className="text-sm text-red-500 mt-2">
@@ -118,15 +118,17 @@ const FormRegister = () => {
           </span>
         </div>
       </div>
+      <div className="mb-3">
       <RegisterButton />
-      <p className="text-sm font-light text-gray-500">
+      </div>
+      {/* <p className="text-sm font-light text-gray-500">
         Already have an account?
         <Link href="/login">
           <span className="font-medium pl-1 text-blue-600 hover:text-blue-700">
             Sign in
           </span>
         </Link>
-      </p>
+      </p> */}
     </form>
   );
 };

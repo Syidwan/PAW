@@ -5,7 +5,8 @@ import Credentials from "next-auth/providers/credentials"
 import { SignInSchema } from "./lib/zod"
 import { compareSync } from "bcrypt-ts"
 import Google from "next-auth/providers/google"
- 
+import { NextResponse } from "next/server"
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
    adapter: PrismaAdapter(prisma),
    session: { strategy: "jwt" },
@@ -28,35 +29,34 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
             const { email, password } = validatedFields.data
             const user = await prisma.user.findUnique({
-               where: {email}
+               where: { email }
             })
-            if (!user || !user.password) { 
-               throw new Error("user not found")
+            if (!user || !user.password) {
+               throw new Error("User not found")
             }
-            const paswordMatch = compareSync(password, user.password)
-            if (!paswordMatch) return null
+            const passwordMatch = compareSync(password, user.password)
+            if (!passwordMatch) return null
 
             return user
          }
       })
    ],
-   // callback
    callbacks: {
-      authorized({ auth, request: { nextUrl } }) {
+      async authorized({ auth, request }) {
          const isLoggedIn = !!auth?.user
          const ProtectedRoutes = ["/dashboard", "/user"]
 
-         if (!isLoggedIn && ProtectedRoutes.includes(nextUrl.pathname)) {
-            return Response.redirect(new URL("/login", nextUrl))
+         if (!isLoggedIn && ProtectedRoutes.some(route => request.nextUrl.pathname.startsWith(route))) {
+            return NextResponse.redirect(new URL("/login", request.nextUrl))
          }
 
-         if (isLoggedIn && nextUrl.pathname.startsWith("/login")) {
-            return Response.redirect(new URL("/dashboard", nextUrl))
+         if (isLoggedIn && request.nextUrl.pathname.startsWith("/login")) {
+            return NextResponse.redirect(new URL("/dashboard", request.nextUrl))
          }
          return true
       },
-      jwt({token, user}) {
-         if(user) token.role = user.role
+      jwt({ token, user }) {
+         if (user) token.role = user.role
          return token
       },
       session({ session, token }) {

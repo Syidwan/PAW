@@ -7,12 +7,12 @@ export const RegisterButton = () => {
     <button
       type="submit"
       disabled={pending}
-      className="w-full text-white bg-blue-700 font-medium rounded-lg px-5 py-2.5 text-center uppercase hover:bg-blue-800"
+      className="bg-[#82CBFF] text-white px-4 py-2 rounded-lg w-full hover:bg-[#266CA9]"
     >
       {pending ? (
         <span className="loading loading-spinner loading-xs"></span>
       ) : (
-        "Register"
+        "Create an account"
       )}
     </button>
   );
@@ -24,7 +24,7 @@ export const LoginButton = () => {
     <button
       type="submit"
       disabled={pending}
-      className="w-full text-white bg-blue-700 font-medium rounded-lg px-5 py-2.5 text-center uppercase hover:bg-blue-800"
+      className="bg-[#82CBFF] text-white px-4 py-2 rounded-lg w-full hover:bg-[#266CA9]"
     >
       {pending ? (
         <span className="loading loading-spinner loading-xs"></span>
