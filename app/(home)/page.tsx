@@ -11,7 +11,7 @@ export default function Home() {
           Bring all your tasks, teammates, and tools together
         </h1>
         <p className="text-sm text-[#333] mb-6">
-          Keep everything in the same place, even if your team isn't
+          Keep everything in the same place, even if your team isnt
         </p>
         <a
           href="/register"
