@@ -103,7 +103,7 @@ const Navbar = async () => {
       <div className="max-w-screen-xl flex items-center justify-between mx-auto p-4">
         <Link href="/">
           <Image
-            src="/logo-black.png"
+            src="/img/Logo.png"
             alt="logo"
             width={128}
             height={36}
@@ -118,7 +118,7 @@ const Navbar = async () => {
           </ul>
           <Link
             href="/login"
-            className="bg-[#041D56] text-white px-4 py-2 rounded-md hover:bg-[#70C3FF]"
+            className="bg-[#041D56] text-white px-4 py-2 rounded-md hover:bg-[#004080]"
           >
             Sign In
           </Link>
