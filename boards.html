@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PAW Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="script.js" defer></script>
 </head>
-<body class="bg-gradient-to-b from-[#70C3FF] via-[#70C3FF] to-[#266CA9]">
-  <div class="flex flex-col h-screen">
+<body class="bg-gradient-to-b from-[#70C3FF] via-[#70C3FF] to-[#266CA9] h-full">
+  <div class="flex flex-col min-h-screen">
      <!-- Header -->
      <nav class="w-full flex justify-between items-center bg-white p-2 shadow h-12">
       <div class="flex items-center space-x-8 ml-6">
@@ -20,7 +21,8 @@
           <button class="px-2 py-1 text-sm hover:text-blue-500">Starred </button>
           <img src="public/img/drop.png" alt="Starred Icon" class="w-3 h-2">
         </div>
-        <button onclick="location.href='create.html'" class="bg-[#041D56] text-white px-3 py-1 rounded-lg ml-9 hover:bg-[#70C3FF]">Create</button>
+        <button id="createButton" class="bg-[#041D56] text-white px-3 py-1 rounded-lg ml-9 hover:bg-[#70C3FF]">Create</button>
+        
       </div>
       <div class="flex items-center space-x-0.1 mr-4">
         <!-- Button Notifications -->
@@ -32,72 +34,144 @@
           <img src="public/img/help.png" alt="Help" class="w-6 h-6">
         </button>
         <!-- Button User -->
-        <button onclick="location.href='user.html'" class="hover:bg-gray-100 p-2 rounded-full">
-          <img src="public/img/user.png" alt="User" class="w-6 h-6">
-        </button>
+        <div class="relative z-50">
+          <button id="profileButton" class="hover:bg-gray-100 p-2 rounded-full">
+            <img src="public/img/user.png" alt="User" class="w-6 h-6 rounded-full">
+          </button>
+      
+          <!-- Dropdown Card -->
+          <div id="profileDropdown" class="hidden absolute right-0 bg-white rounded-md shadow-lg w-64 mt-2">
+            <!-- Profile Info -->
+            <div class="flex items-center p-4 border-b border-gray-200">
+              <img src="public/img/user.png" alt="User" class="w-10 h-10 rounded-full">
+              <div class="ml-3">
+                <p class="text-gray-800 font-semibold">Nama User</p>
+                <p class="text-sm text-gray-500">user@gmail.com</p>
+              </div>
+            </div>
+            <!-- Menu Options -->
+            <ul class="flex flex-col divide-y divide-gray-200">
+              <li class="hover:bg-blue-100 px-4 py-2 cursor-pointer">Switch Account</li>
+              <li class="hover:bg-blue-100 px-4 py-2 cursor-pointer">Theme</li>
+              <li id="logoutButton" class="hover:bg-blue-100 px-4 py-2 cursor-pointer">Log Out</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </nav>
-    
-    <div class="flex flex-1">
-      <!-- Sidebar -->
-      <aside class="bg-gray-200 w-1/5 p-4">
-        <nav>
-          <ul>
-            <li class="mb-4">
-              <button onclick="location.href='boards.html'" class="bg-[#041D56] text-white px-4 py-2 rounded w-full hover:bg-[#70C3FF]">Boards</button>
-            </li>
-            <li>
-              <button onclick="location.href='home.html'" class="px-4 py-2 rounded w-full hover:bg-[#70C3FF]">Home</button>
-            </li>
-          </ul>
-        </nav>
-      </aside>
 
       <!-- Main Content -->
       <main class="flex-1 p-6">
 
-        <!-- Projects Grid -->
-        <div class="grid grid-cols-3 gap-6">
-          <!-- Repeatable Project Cards -->
-          <div onclick="location.href='project1.html'" class="bg-cover bg-center h-40 shadow-md relative" style="background-image: url('public/img/bg\ project.png');">
-            <div class="absolute inset-0 bg-black bg-opacity-50">
-              <h2 class="text-white text-lg font-bold absolute top-2 left-2">My Project 1</h2>
+        <!-- Recently Views-->
+        <section class="mb-6">
+          <h2 class="text-black text-lg font-bold mb-4 flex items-center">
+            <img src="public/img/Clock.png" alt="Recently View Icon" class="w-6 h-6 mr-2"> Recently Views
+          </h2>
+          <div class="grid grid-cols-4 gap-4">
+            <div onclick="location.href='project1.html'" class="bg-cover bg-center h-32 shadow-md relative" style="background-image: url('public/img/bgproject.png');">
+              <div class="absolute inset-0 bg-black bg-opacity-50">
+                <h2 class="text-white text-lg font-bold absolute top-2 left-2">My Project 1</h2>
+              </div>
+              <img src="public/img/partisipasi.png" alt="Type" class="absolute bottom-2 left-2 w-6 h-6">
             </div>
-            <img src="public/img/partisipasi.png" alt="Type" class="absolute bottom-2 left-2 w-6 h-6">
-          </div>
-          <!-- Copy above block for additional projects -->
-          <div onclick="location.href='project2.html'" class="bg-cover bg-center h-40 shadow-md relative" style="background-image: url('public/img/bg\ project.png');">
-            <div class="absolute inset-0 bg-black bg-opacity-50">
-              <h2 class="text-white text-lg font-bold absolute top-2 left-2">My Project 2</h2>
+            <!-- Copy above block for additional projects -->
+            <div onclick="location.href='project2.html'" class="bg-cover bg-center h-32 shadow-md relative" style="background-image: url('public/img/bgproject.png');">
+              <div class="absolute inset-0 bg-black bg-opacity-50">
+                <h2 class="text-white text-lg font-bold absolute top-2 left-2">My Project 2</h2>
+              </div>
             </div>
-            <img src="public/img/partisipasi.png" alt="Type" class="absolute bottom-2 left-2 w-6 h-6">
-          </div>
-          <div onclick="location.href='project3.html'" class="bg-cover bg-center h-40 shadow-md relative" style="background-image: url('public/img/bg\ project.png');">
-            <div class="absolute inset-0 bg-black bg-opacity-50">
-              <h2 class="text-white text-lg font-bold absolute top-2 left-2">My Project 3</h2>
+            <div onclick="location.href='project3.html'" class="bg-cover bg-center h-32 shadow-md relative" style="background-image: url('public/img/bgproject.png');">
+              <div class="absolute inset-0 bg-black bg-opacity-50">
+                <h2 class="text-white text-lg font-bold absolute top-2 left-2">My Project 3</h2>
+              </div>
+              <img src="public/img/partisipasi.png" alt="Type" class="absolute bottom-2 left-2 w-6 h-6">
             </div>
-            <img src="public/img/partisipasi.png" alt="Type" class="absolute bottom-2 left-2 w-6 h-6">
-          </div>
-          <div onclick="location.href='project4.html'" class="bg-cover bg-center h-40 shadow-md relative" style="background-image: url('public/img/bg\ project.png');">
-            <div class="absolute inset-0 bg-black bg-opacity-50">
-              <h2 class="text-white text-lg font-bold absolute top-2 left-2">My Project 4</h2>
+            <div onclick="location.href='project4.html'" class="bg-cover bg-center h-32 shadow-md relative" style="background-image: url('public/img/bgproject.png');">
+              <div class="absolute inset-0 bg-black bg-opacity-50">
+                <h2 class="text-white text-lg font-bold absolute top-2 left-2">My Project 4</h2>
+              </div>
             </div>
-            <img src="public/img/partisipasi.png" alt="Type" class="absolute bottom-2 left-2 w-6 h-6">
           </div>
-          <div onclick="location.href='project5.html'" class="bg-cover bg-center h-40 shadow-md relative" style="background-image: url('public/img/bg\ project.png');">
-            <div class="absolute inset-0 bg-black bg-opacity-50">
-              <h2 class="text-white text-lg font-bold absolute top-2 left-2">My Project 5</h2>
+        </section>
+
+        <!-- Your Boards-->
+        <section class="mb-6">
+          <h2 class="text-black text-lg font-bold mb-4 flex items-center">
+            <img src="public/img/Folder.png" alt="Your Boards  Icon" class="w-6 h-6 mr-2"> Your Boards
+          </h2>
+          <div class="grid grid-cols-4 gap-4">
+            <div onclick="location.href='project1.html'" class="bg-cover bg-center h-32 shadow-md relative" style="background-image: url('public/img/bgproject.png');">
+              <div class="absolute inset-0 bg-black bg-opacity-50">
+                <h2 class="text-white text-lg font-bold absolute top-2 left-2">My Project 1</h2>
+              </div>
             </div>
-            <img src="public/img/partisipasi.png" alt="Type" class="absolute bottom-2 left-2 w-6 h-6">
-          </div>
-          <div onclick="location.href='project6.html'" class="bg-cover bg-center h-40 shadow-md relative" style="background-image: url('public/img/bg\ project.png');">
-            <div class="absolute inset-0 bg-black bg-opacity-50">
-              <h2 class="text-white text-lg font-bold absolute top-2 left-2">My Project 6</h2>
+            <!-- Copy above block for additional projects -->
+            <div onclick="location.href='project2.html'" class="bg-cover bg-center h-32 shadow-md relative" style="background-image: url('public/img/bgproject.png');">
+              <div class="absolute inset-0 bg-black bg-opacity-50">
+                <h2 class="text-white text-lg font-bold absolute top-2 left-2">My Project 2</h2>
+              </div>
             </div>
-            <img src="public/img/partisipasi.png" alt="Type" class="absolute bottom-2 left-2 w-6 h-6">
+            <div onclick="location.href='project3.html'" class="bg-cover bg-center h-32 shadow-md relative" style="background-image: url('public/img/bgproject.png');">
+              <div class="absolute inset-0 bg-black bg-opacity-50">
+                <h2 class="text-white text-lg font-bold absolute top-2 left-2">My Project 3</h2>
+              </div>
+            </div>
+            <div class="bg-gray-600 flex justify-center items-center h-32 shadow-md cursor-pointer" id="createBoards"  >
+              <h2 class="text-white text-md font-bold">Create new board</h2>
+            </div>
           </div>
-        </div>
+        </section>
+        
+        <!-- Guest Boards-->
+        <section class="mb-6">
+          <h2 class="text-black text-lg font-bold mb-4 flex items-center">
+            <img src="public/img/person.png" alt="Guest Boards  Icon" class="w-6 h-6 mr-2"> Guest Boards
+          </h2>
+          <div class="grid grid-cols-4 gap-4">
+            <div onclick="location.href='project1.html'" class="bg-cover bg-center h-32 shadow-md relative" style="background-image: url('public/img/bgproject.png');">
+              <div class="absolute inset-0 bg-black bg-opacity-50">
+                <h2 class="text-white text-lg font-bold absolute top-2 left-2">My Project 1</h2>
+              </div>
+              <img src="public/img/partisipasi.png" alt="Type" class="absolute bottom-2 left-2 w-6 h-6">
+            </div>
+            <!-- Copy above block for additional projects -->
+            <div onclick="location.href='project2.html'" class="bg-cover bg-center h-32 shadow-md relative" style="background-image: url('public/img/bgproject.png');">
+              <div class="absolute inset-0 bg-black bg-opacity-50">
+                <h2 class="text-white text-lg font-bold absolute top-2 left-2">My Project 2</h2>
+              </div>
+              <img src="public/img/partisipasi.png" alt="Type" class="absolute bottom-2 left-2 w-6 h-6">
+            </div>
+          </div>
+        </section> 
       </main>
+    </div>
+  </div>
+
+  <!-- Create Board Card -->
+  <div id="createBoardCard" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+    <div class="bg-white rounded-md shadow-lg w-96 p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-center text-lg font-semibold text-gray-800 flex-1">Create Boards</h2>
+        <button id="closeCardButton" class="text-gray-500 hover:text-gray-800">&times;</button>
+      </div>
+      <div class="mb-4">
+        <label for="boardTitle" class="block text-sm font-medium text-gray-700 mb-2">Board Title <span class="text-red-500">*</span></label>
+        <input id="boardTitle" type="text" placeholder="Enter board title" class="w-full border border-gray-300 rounded-md p-2 focus:ring focus:ring-blue-300">
+        <p id="errorText" class="hidden text-red-500 text-sm mt-1">Title is required.</p>
+      </div>
+      <button id="submitCreateButton" disabled class="w-full bg-gray-300 text-white py-2 rounded-md cursor-not-allowed">Create</button>
+    </div>
+  </div>
+
+  <!-- Logout Confirmation Card -->
+  <div id="logoutCard" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+    <div class="bg-white rounded-md shadow-lg w-100 p-6 text-center">
+      <h2 class="text-lg font-semibold text-gray-800">Are you sure you want to log out?</h2>
+      <div class="flex justify-center mt-4 space-x-8 ml-6">
+        <button id="yesButton" class="bg-[#266CA9] text-white px-4 py-2 rounded-md hover:bg-[#70C3FF]">Yes</button>
+        <button id="noButton" class="bg-[#266CA9] text-white px-4 py-2 rounded-md hover:bg-[#70C3FF]">No</button>
+      </div>
     </div>
   </div>
 </body>
