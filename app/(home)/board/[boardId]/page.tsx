@@ -1,8 +1,9 @@
 import React from 'react'
 import {getBoardsById} from "@/lib/data"
 import { notFound } from 'next/navigation';
+import { PageProps } from '@/.next/types/app/layout';
 
-const Board = async ({ params }: { params: { boardId: string } }) => {
+const Board = async ({ params }: PageProps)  => {
   const { boardId } = await params;
   if (!boardId) {
     throw new Error("Board ID is missing in the route parameters.");
