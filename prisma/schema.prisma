@@ -10,7 +10,7 @@ generator client {
 
 datasource db {
   provider  = "postgresql"
-  url  	    = env("DATABASE_URL")
+  url       = env("DATABASE_URL")
 }
 
 model Account {
@@ -32,7 +32,7 @@ model Account {
   @@unique([provider, providerAccountId])
   @@map("accounts")
 }
- 
+
 model Session {
   id           String   @id @default(cuid())
   sessionToken String   @unique @map("session_token")
@@ -42,7 +42,7 @@ model Session {
  
   @@map("sessions")
 }
- 
+
 model User {
   id            String    @id @default(cuid())
   name          String?
@@ -50,15 +50,19 @@ model User {
   emailVerified DateTime? @map("email_verified")
   image         String?
   password      String?
-  role String @default("user")
-  createdAt DateTime @default(now())
+  role          String    @default("user")
+  createdAt     DateTime  @default(now())
+
+  // Relationships
   accounts      Account[]
   sessions      Session[]
-  products Product[]
- 
+  products      Product[]
+  userBoards    UserBoard[]
+  boards        Board[] @relation("UserBoards")
+
   @@map("users")
 }
- 
+
 model VerificationToken {
   identifier String
   token      String
@@ -69,13 +73,64 @@ model VerificationToken {
 }
 
 model Product {
-  id String @id @default(cuid())
-  name String
-  price Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  userId String
+  id          String    @id @default(cuid())
+  name        String
+  price       Int
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  userId      String
 
-  use User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
 
+model Board {
+  id          String    @id @default(cuid())
+  name        String
+  createdAt   DateTime  @default(now())
+  userId      String
+
+  // Relationship with UserBoard
+  userBoards  UserBoard[]
+  lists       List[]     @relation("BoardLists") // Removed onDelete from this side
+
+  // Linking User and Boards
+  user        User @relation("UserBoards", fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model List {
+  id          String    @id @default(cuid())
+  name        String
+  createdAt   DateTime  @default(now())
+  boardId     String
+
+  // Relationship with Board
+  board       Board @relation("BoardLists", fields: [boardId], references: [id], onDelete: Cascade)
+  cards       Card[]  @relation("ListCards") // Removed onDelete from this side
+}
+
+model Card {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  attachment  String?
+  checklist   String?
+  createdAt   DateTime @default(now())
+  dueDate     DateTime?
+  listId      String
+
+  // Relationship with List
+  list        List @relation("ListCards", fields: [listId], references: [id], onDelete: Cascade)
+}
+
+model UserBoard {
+  id        String @id @default(cuid())
+  userId    String
+  boardId   String
+  ownerId   String
+
+  // Relationships
+  user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  board     Board  @relation(fields: [boardId], references: [id], onDelete: Cascade)
+
+  @@map("userboards")
 }

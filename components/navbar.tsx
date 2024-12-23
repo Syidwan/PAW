@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { auth, signOut } from "@/auth";
+import CreateBoard from "./createBoard";
 
 const Navbar = async () => {
   const session = await auth();
@@ -45,12 +46,29 @@ const Navbar = async () => {
             className="w-3 h-2"
           />
         </div>
-        <Link
+        {/* <Link
           href="/create"
           className="bg-[#041D56] text-white px-3 py-1 rounded-lg ml-9 hover:bg-[#70C3FF]"
         >
           Create
-        </Link>
+        </Link> */}
+        <div className="dropdown">
+          <div
+            tabIndex={0}
+            role="button"
+            className="bg-[#041D56] text-white px-3 py-1 rounded-lg ml-3 hover:bg-[#70C3FF]"
+          >
+            Create
+          </div>
+          <ul
+            tabIndex={0}
+            className="dropdown-content menu bg-base-100 rounded-box z-[1] w-64 p-5 shadow"
+          >
+
+              <CreateBoard />
+
+          </ul>
+        </div>
       </div>
       <div className="flex items-center space-x-1 mr-4">
         <Link
@@ -76,7 +94,7 @@ const Navbar = async () => {
         </Link>
         <Link href="/user" className="hover:bg-gray-100 p-2 rounded-full">
           <Image
-            src={session.user.image ||  "/img/user.png"}
+            src={session.user.image || "/img/user.png"}
             alt="User"
             width={24}
             height={24}
@@ -84,18 +102,18 @@ const Navbar = async () => {
           />
         </Link>
         <form
-              action={async () => {
-                "use server";
-                await signOut({ redirectTo: "/login" });
-              }}
-            >
-              <button
-                type="submit"
-                className="bg-red-400 text-white px-4 py-2 rounded-md hover:bg-red-500"
-              >
-                Sign Out
-              </button>
-            </form>
+          action={async () => {
+            "use server";
+            await signOut({ redirectTo: "/login" });
+          }}
+        >
+          <button
+            type="submit"
+            className="bg-red-400 text-white px-4 py-2 rounded-md hover:bg-red-500"
+          >
+            Sign Out
+          </button>
+        </form>
       </div>
     </nav>
   ) : (
@@ -118,7 +136,7 @@ const Navbar = async () => {
           </ul>
           <Link
             href="/login"
-            className="bg-[#041D56] text-white px-4 py-2 rounded-md hover:bg-[#004080]"
+            className="bg-[#041D56] text-white px-4 py-2 rounded-md hover:bg-[#70C3FF]"
           >
             Sign In
           </Link>

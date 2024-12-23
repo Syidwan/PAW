@@ -1,5 +1,6 @@
 export default function Home() {
   return (
+    
     <div
       className="flex flex-wrap h-screen w-full content-center justify-center bg-gradient-to-b from-[#70C3FF] via-[#70C3FF] to-[#266CA9]" 
     >

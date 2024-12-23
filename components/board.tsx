@@ -1,14 +1,24 @@
-import Image from 'next/image'
-import React from 'react'
+// components/Board.tsx
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
 
-const Board = () => {
+interface BoardProps {
+  id: string;
+  name: string;
+}
+
+
+const Board: React.FC<BoardProps> = ({ id, name }) => {
   return (
+    <Link href={`/board/${id}`}>
+
     <div
       className="bg-cover bg-center h-40 shadow-md relative"
       style={{ backgroundImage: "url('/img/bgproject.png')" }} // Menggunakan background image
     >
       <div className="absolute inset-0 bg-black bg-opacity-50">
-        <h2 className="text-white text-lg font-bold absolute top-2 left-2">My Project 1</h2>
+        <h2 className="text-white text-lg font-bold absolute top-2 left-2">{name}</h2>
       </div>
       <Image
         src="/img/partisipasi.png" // Pastikan path dimulai dengan "/img/" tanpa public
@@ -18,7 +28,8 @@ const Board = () => {
         height={24} 
       />
     </div>
-  )
-}
+    </Link>
+  );
+};
 
-export default Board
+export default Board;

@@ -1,9 +1,9 @@
-const Layout = () => {
+const BoardLayout = ({ children }: { children: React.ReactNode }) => {
 	return (
 		 <div>
-			  {/* Konten Layout */}
+			  {children}
 		 </div>
 	);
 };
 
-export default Layout;
+export default BoardLayout;
