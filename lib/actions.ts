@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
 import { revalidatePath } from "next/cache";
+import { getBoardsById } from "./data";
 
 export const signUpCredentials = async (
   prevState: unknown,
@@ -85,7 +86,7 @@ export const signInCredentials = async (
 export const createBoard = async (formData: FormData, userId: string) => {
   // Convert formData entries to an object
   const validatedFields = Object.fromEntries(formData.entries());
-
+  const background = formData.get("background") as string;
   // Ensure 'name' is a string
   const name = validatedFields.name;
   if (typeof name !== "string") {
@@ -102,6 +103,8 @@ export const createBoard = async (formData: FormData, userId: string) => {
         user: {
           connect: { id: userId }, // Connect the board to the user by userId
         },
+        background,
+        lastAccessed: new Date(),
       },
     });
     console.log("Board created successfully");
@@ -114,4 +117,21 @@ export const createBoard = async (formData: FormData, userId: string) => {
     return { message: "Failed to create board" };
    }
    
+};
+
+export const updateBoardAccess = async (boardId: string) => {
+  const data = await getBoardsById(boardId);
+  try {
+    await prisma.board.update({
+      data: {
+        lastAccessed: new Date(), // Set waktu sekarang
+      },
+      where: { id: boardId }
+    });
+
+  } catch (error) {
+    console.error("Failed to update access:", error);
+    return { message: "Failed to update access" };
+  }
+
 };

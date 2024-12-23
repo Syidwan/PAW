@@ -2,14 +2,16 @@
 
 import React, { useState } from "react";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation"; // For client-side navigation
+import { useRouter } from "next/navigation";
 import { createBoard } from "@/lib/actions"; // Import server action
+import Image from "next/image";
 
 const CreateBoardForm = () => {
   const { data: session } = useSession();
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [boardName, setBoardName] = useState("");
+  const [background, setBackground] = useState("/background/bg1.jpg"); // Default background
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -19,7 +21,10 @@ const CreateBoardForm = () => {
       return;
     }
 
-    const formData = new FormData(event.target as HTMLFormElement);
+    const formData = new FormData();
+    formData.append("name", boardName);
+    formData.append("background", background);
+
     const userId = session.user.id;
 
     try {
@@ -47,8 +52,48 @@ const CreateBoardForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="mb-3">
-        <label htmlFor="name" className="mb-2 block text-xs font-regular">
+        <label
+          htmlFor="name"
+          className="mb-2 block text-xs font-regular text-center"
+        >
           Create New Board
+        </label>
+        <div className="my-2 mb-6">
+          <label htmlFor="name" className="mb-2 block text-xs font-regular">
+            Choose Background
+          </label>
+          <div className="grid grid-cols-4 gap-1">
+            {[
+              "/background/bg1.jpg",
+              "/background/bg2.jpg",
+              "/background/bg3.jpg",
+              "/background/bg4.jpg",
+            ].map((bg, index) => (
+              <div
+                key={index}
+                className={`relative cursor-pointer rounded-sm overflow-hidden ${
+                  background === bg
+                    ? "border-2 border-blue-500"
+                    : "border border-black"
+                }`}
+                onClick={() => setBackground(bg)} // Update background on click
+              >
+                <Image
+                  src={bg}
+                  alt={`bg${index + 1}`}
+                  width={90}
+                  height={50}
+                  className="object-cover"
+                />
+                {background === bg && (
+                  <div className="absolute inset-0 border-2 border-blue-500 rounded-sm pointer-events-none"></div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+        <label htmlFor="name" className="mb-2 block text-xs font-regular">
+          Input Board Name
         </label>
         <input
           type="text"
@@ -58,13 +103,7 @@ const CreateBoardForm = () => {
           value={boardName}
           onChange={handleChange}
         />
-		  </div>
-		  <div aria-live="polite" aria-atomic="true">
-          <span className="text-sm text-red-500 mt-2">
-            Board name required
-          </span>
-        </div>
-
+      </div>
       {error && (
         <div
           aria-live="polite"
@@ -74,7 +113,6 @@ const CreateBoardForm = () => {
           {error}
         </div>
       )}
-
       <div className="mb-3">
         <button
           type="submit"
@@ -83,7 +121,7 @@ const CreateBoardForm = () => {
               ? "bg-gray-300 cursor-not-allowed"
               : "bg-[#82CBFF] hover:bg-[#266CA9]"
           } text-white px-4 py-2 rounded-lg w-full mt-5`}
-          disabled={isButtonDisabled} // Disable the button when input is empty
+          disabled={isButtonDisabled}
         >
           Create
         </button>

@@ -87,7 +87,10 @@ model Board {
   id          String    @id @default(cuid())
   name        String
   createdAt   DateTime  @default(now())
+  updatedAt   DateTime   @updatedAt
   userId      String
+  background  String
+  lastAccessed DateTime?
 
   // Relationship with UserBoard
   userBoards  UserBoard[]

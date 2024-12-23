@@ -34,3 +34,31 @@ export const LoginButton = () => {
     </button>
   );
 };
+
+
+import { signOut } from "next-auth/react";
+
+const SignOutButton = () => {
+  const handleSignOut = async () => {
+    await signOut({ callbackUrl: "/" });
+  };
+
+  return (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault(); // Hindari reload halaman
+        handleSignOut();
+      }}
+      className="flex w-full"
+    >
+      <button
+        type="submit"
+        className="hover:bg-blue-100 px-4 py-2 cursor-pointer w-full text-start"
+      >
+        Log Out
+      </button>
+    </form>
+  );
+};
+
+export default SignOutButton;
