@@ -15,6 +15,12 @@ const dashboard = async () => {
   }
 
   const boards = await getBoards(session.user.id);
+  const orderBoard = [...boards]
+  .sort((a, b) => {
+    const orderA = new Date(a.createdAt).getTime(); // Convert to timestamp for comparison
+    const orderB = new Date(b.createdAt).getTime(); // Convert to timestamp for comparison
+    return orderB - orderA;
+  });
   
   return (
     <div className="flex-1 p-6">
@@ -23,7 +29,7 @@ const dashboard = async () => {
         <pre>{JSON.stringify(session, null, 2)}</pre> */}
 
         <div className="grid grid-cols-3 gap-6 mt-6">
-          {boards.map((board) => (
+          {orderBoard.map((board) => (
             <Board key={board.id} id={board.id} name={board.name} boardBg={board.background} lastAccess={board.lastAccessed} />
           ))}
         </div>

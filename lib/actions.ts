@@ -6,7 +6,8 @@ import { redirect } from "next/navigation";
 import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
 import { revalidatePath } from "next/cache";
-import { getBoardsById } from "./data";
+import { getBoards, getBoardsById } from "./data";
+import { cookies } from "next/headers";
 
 export const signUpCredentials = async (
   prevState: unknown,
@@ -133,5 +134,28 @@ export const updateBoardAccess = async (boardId: string) => {
     console.error("Failed to update access:", error);
     return { message: "Failed to update access" };
   }
+};
 
+export const deleteBoard = async (boardId: string): Promise<void> => {
+  const data = await getBoardsById(boardId);
+  if (!data) throw new Error("Board not found");
+
+  try {
+    await prisma.board.delete({
+      where: { id: boardId },
+    });
+  } catch (error) {
+    throw new Error("Failed to delete board");
+  }
+
+  // Set a cookie to indicate successful deletion
+  const cookieStore = await cookies();
+  cookieStore.set("deleteBoard", "true", {
+    maxAge: 3000, 
+    path: "/", // Make the cookie available globally
+  });
+
+  // Redirect to the dashboard page
+  revalidatePath(`/dashboard/${data.userId}`);
+  redirect(`/dashboard/${data.userId}`);
 };

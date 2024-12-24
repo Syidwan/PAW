@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { createBoard } from "@/lib/actions"; // Import server action
 import Image from "next/image";
+import { CreateBtn } from "./button";
 
 const CreateBoardForm = () => {
   const { data: session } = useSession();
@@ -114,17 +115,7 @@ const CreateBoardForm = () => {
         </div>
       )}
       <div className="mb-3">
-        <button
-          type="submit"
-          className={`${
-            isButtonDisabled
-              ? "bg-gray-300 cursor-not-allowed"
-              : "bg-[#82CBFF] hover:bg-[#266CA9]"
-          } text-white px-4 py-2 rounded-lg w-full mt-5`}
-          disabled={isButtonDisabled}
-        >
-          Create
-        </button>
+      <CreateBtn status={isButtonDisabled} />
       </div>
     </form>
   );

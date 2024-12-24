@@ -9,9 +9,9 @@ interface BoardListProps {
 
 const BoardList: React.FC<BoardListProps> = async ({ userId, recentBoards }) => {
   const error = "No boards open yet!"; // Variabel error
-  if (!recentBoards || recentBoards.length === 0) {
-	return <div className="text-center text-gray-500">{error}</div>;
- }
+//   if (!recentBoards || recentBoards.length === 0) {
+// 	return <div className="text-center text-gray-500">{error}</div>;
+//  }
 
 const sortedBoards = [...recentBoards]
   .sort((a, b) => {

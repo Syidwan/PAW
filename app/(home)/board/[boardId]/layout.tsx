@@ -1,9 +1,11 @@
 import Navbar from "@/components/navbar";
+import NavbarBoard from "@/components/navbarBoard";
 
 const BoardLayout = ({ children }: { children: React.ReactNode }) => {
 	return (
 		<div>
-			<Navbar/>
+			<Navbar />
+
 			  {children}
 		 </div>
 	);

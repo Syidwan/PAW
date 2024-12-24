@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { auth, signOut } from "@/auth";
 import CreateBoard from "./createBoard";
-import SignOutButton from "./button";
+import {SignOutButton} from "./button";
 import { BoardRecents } from "./board";
 import { getBoards } from "@/lib/data";
 import BoardList from "./boardList";
@@ -16,7 +16,7 @@ const Navbar = async () => {
   const boards = await getBoards(session.user.id);
   const recentBoard = boards
   return session ? (
-    <nav className="w-full flex justify-between items-center bg-white p-2 shadow h-12">
+    <nav className="w-full flex justify-between items-center bg-white p-2 shadow h-12 sticky top-0 z-10">
       <div className="flex items-center space-x-8 ml-6">
         <Link href={`/dashboard/${session.user.id}`}>
           <Image
