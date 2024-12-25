@@ -109,7 +109,7 @@ export const CreateBtn = ({status}:{status:boolean}) => {
     } text-white px-4 py-2 rounded-lg w-full mt-5`}
     disabled={status || pending}
   >
-      {pending ? (<span className="loading loading-spinner"></span>) : ("Delete")}
+      {pending ? (<span className="loading loading-spinner"></span>) : ("Create")}
     </button>
   )
 }

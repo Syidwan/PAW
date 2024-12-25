@@ -103,26 +103,37 @@ model Board {
 model List {
   id          String    @id @default(cuid())
   name        String
-  createdAt   DateTime  @default(now())
+  order       Int
   boardId     String
 
   // Relationship with Board
   board       Board @relation("BoardLists", fields: [boardId], references: [id], onDelete: Cascade)
   cards       Card[]  @relation("ListCards") // Removed onDelete from this side
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([boardId])
 }
 
 model Card {
   id          String   @id @default(cuid())
   name        String
-  description String?
+  order Int
+  description String? @db.Text
   attachment  String?
   checklist   String?
-  createdAt   DateTime @default(now())
   dueDate     DateTime?
+
   listId      String
 
   // Relationship with List
   list        List @relation("ListCards", fields: [listId], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([listId])
 }
 
 model UserBoard {

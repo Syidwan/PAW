@@ -2,11 +2,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { auth, signOut } from "@/auth";
-import CreateBoard from "./createBoard";
+import CreateBoard from "./create-board";
 import {SignOutButton} from "./button";
 import { BoardRecents } from "./board";
 import { getBoards } from "@/lib/data";
-import BoardList from "./boardList";
+import BoardList from "./board-list";
 
 const Navbar = async () => {
   const session = await auth();

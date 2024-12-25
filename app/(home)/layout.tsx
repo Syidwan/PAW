@@ -1,5 +1,5 @@
 "use client"
-import NavbarHome from "@/components/navbarHome";
+import NavbarHome from "@/components/navbar-home";
 import { SessionProvider } from "next-auth/react";
 import { usePathname } from "next/navigation";
 
