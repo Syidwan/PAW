@@ -7,6 +7,7 @@ export async function GET(
   { params }: { params: { cardId: string } }
 ) {
   try {
+    const { cardId } = await params;
     const session = await auth();
     const userId = session?.user.id;
 
@@ -16,7 +17,7 @@ export async function GET(
 
     const card = await prisma.card.findUnique({
       where: {
-        id: params.cardId as string,
+        id: cardId,
         list: {
           board: {
             userId,
