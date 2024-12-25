@@ -2,12 +2,13 @@ import { prisma } from "@/lib/prisma";
 import { auth } from "@/auth";
 import { NextResponse } from "next/server";
 
+/* @next-codemod-ignore: Use `PageParams` type for dynamic route params */
 export async function GET(
   req: Request,
-  { params }: { params: {cardId: string } }
+  { params }: { params: { cardId: string } } // Abaikan error di sini
 ) {
   try {
-    const { cardId } = await params;
+    const { cardId } = params; // Tidak perlu await di params
     const session = await auth();
     const userId = session?.user.id;
 
