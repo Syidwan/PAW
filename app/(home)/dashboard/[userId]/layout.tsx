@@ -1,7 +1,7 @@
 // components/DashboardLayout.tsx
 import Navbar from "@/components/navbar";
 import Sidebar from "@/components/sidebar";
-import ToastNotification from "@/components/ToastNotification";
+import ToastNotification from "@/components/toast-notification";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 

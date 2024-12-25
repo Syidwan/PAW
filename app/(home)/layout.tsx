@@ -1,5 +1,6 @@
 "use client"
-import NavbarHome from "@/components/navbarHome";
+import NavbarHome from "@/components/navbar-home";
+import { QueryProvider } from "@/components/providers/query-provider";
 import { SessionProvider } from "next-auth/react";
 import { usePathname } from "next/navigation";
 
@@ -9,7 +10,6 @@ const HomeLayout = ({ children }: { children: React.ReactNode }) => {
 	const isBoardPage = pathname?.startsWith("/board/"); // Cek jika di halaman board
 	return (
 		<SessionProvider>
-
 		<div className="flex flex-col h-screen">
 		{!isDashboardPage && !isBoardPage && <NavbarHome />}
 			{children}
