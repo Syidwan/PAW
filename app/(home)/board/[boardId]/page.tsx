@@ -9,13 +9,8 @@ import { auth } from '@/auth';
 import { prisma } from '@/lib/prisma';
 import { ListContainer } from '@/components/list-container';
 
-interface BoardIdPageProps {
-  params: {
-    boardId: string;
-  };
-}
-const BoardPage = async ({ params }: BoardIdPageProps) => {
-  const { boardId } = await params;
+const BoardPage = async ({ params }: { params: { boardId: string } }) => {
+  const { boardId } = params;
   const session = await auth()
   if (!boardId) {
     throw new Error("Board ID is missing in the route parameters.");
