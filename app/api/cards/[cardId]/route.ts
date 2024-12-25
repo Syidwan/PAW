@@ -7,7 +7,7 @@ export async function GET(
   { params }: { params: {cardId: string } }
 ) {
   try {
-    const { cardId } = params;
+    const { cardId } = await params;
     const session = await auth();
     const userId = session?.user.id;
 
