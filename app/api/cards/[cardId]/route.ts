@@ -3,15 +3,20 @@ import { prisma } from "@/lib/prisma";
 import { auth } from "@/auth";
 import { NextResponse } from "next/server";
 
-export async function GET(
-  req: Request,
-  context: { params: { cardId: string } } = { params: { cardId: '' } }
-) {
-  const { cardId } = context.params;
+// Menambahkan Promise pada params
+type Props = {
+  params: Promise<{
+    cardId: string;
+  }>;
+};
+
+export async function GET(req: Request, props: Props) {
+  // Menunggu params yang berbentuk Promise untuk diselesaikan
+  const { cardId } = await props.params;
 
   try {
     const session = await auth();
-    const userId = session?.user.id
+    const userId = session?.user.id;
 
     if (!userId) {
       return new NextResponse("Unauthorized!", { status: 401 });
@@ -34,6 +39,10 @@ export async function GET(
         },
       },
     });
+
+    if (!card) {
+      return new NextResponse("Card not found", { status: 404 });
+    }
 
     return NextResponse.json(card);
   } catch (error) {
