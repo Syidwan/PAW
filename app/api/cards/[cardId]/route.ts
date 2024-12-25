@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(
   req: Request,
-  { params }: { params: any }
+  { params }: { params: {cardId: string } }
 ) {
   try {
     const { cardId } = params;

@@ -1,7 +1,7 @@
 import React from 'react'
 import { getBoardsById } from "@/lib/data"
 import { notFound, redirect } from 'next/navigation';
-import { PageProps } from '@/.next/types/app/layout';
+
 import Image from 'next/image'
 import { updateBoardAccess } from '@/lib/actions';
 import NavbarBoard from '@/components/navbar-board';
@@ -9,8 +9,12 @@ import { auth } from '@/auth';
 import { prisma } from '@/lib/prisma';
 import { ListContainer } from '@/components/list-container';
 
-
-const BoardPage = async ({ params }: PageProps) => {
+interface BoardIdPageProps {
+  params: {
+    boardId: string;
+  };
+}
+const BoardPage = async ({ params }: BoardIdPageProps) => {
   const { boardId } = await params;
   const session = await auth()
   if (!boardId) {
