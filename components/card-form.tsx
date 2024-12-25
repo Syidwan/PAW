@@ -74,9 +74,9 @@ export const CardForm = forwardRef<HTMLTextAreaElement, CardFormProps>(
             errors={fieldErrors}
             placeholder="Enter a title for this card..."
           />
-          <input hidden id="listId" name="listId" value={listId} />
+          <input hidden id="listId" name="listId" defaultValue={listId} />
           <div className="flex justify-between items-center gap-x-1">
-            <FormSubmit>Add card</FormSubmit>
+            <FormSubmit className="text-base-100">Add card</FormSubmit>
             <Button size={"sm"} variant={"ghost"} onClick={disableEditing}>
               <X className="h-5 w-5" />
             </Button>

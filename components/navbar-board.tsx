@@ -9,7 +9,7 @@ interface NavbarBoardProps {
 const NavbarBoard: React.FC<NavbarBoardProps> = ({ boardId, boardName, userId }) => {
   console.log(boardId)
   return (
-	  <div className="navbar bg-transparent fixed" >
+	  <div className="navbar bg-transparent fixed z-0" >
 		<div className="absolute inset-0 bg-gray-900 backdrop-blur-sm opacity-60 pointer-events-none z-[-1]"></div>
       <div className="flex-1">
 			  <a className="btn btn-ghost text-base-100 text-xl">{boardName}</a>

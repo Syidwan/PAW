@@ -122,7 +122,7 @@ model Card {
   order Int
   description String? @db.Text
   attachment  String?
-  checklist   String?
+  checklist   Boolean @default(false)
   dueDate     DateTime?
 
   listId      String
