@@ -5,9 +5,10 @@ import { NextResponse } from "next/server";
 
 export async function GET(
   req: Request,
-  { params }: { params?: { cardId: string } } = {}
+  context: { params: { cardId: string } } = { params: { cardId: '' } }
 ) {
-  const cardId = params?.cardId || '';
+  const { cardId } = context.params;
+
   try {
     const session = await auth();
     const userId = session?.user.id
