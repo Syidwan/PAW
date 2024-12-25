@@ -1,12 +1,13 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { prisma } from "@/lib/prisma";
 import { auth } from "@/auth";
 import { NextResponse } from "next/server";
 
 export async function GET(
   req: Request,
-  context: { params: { cardId: string } }   
+  { params }: { params: { cardId: string }  }
 ) {
-  const { cardId } = context.params
+  const { cardId } = await params
   try {
     const session = await auth();
     const userId = session?.user.id
