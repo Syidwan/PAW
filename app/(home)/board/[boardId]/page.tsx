@@ -7,15 +7,17 @@ import NavbarBoard from '@/components/navbar-board';
 import { auth } from '@/auth';
 import { prisma } from '@/lib/prisma';
 import { ListContainer } from '@/components/list-container';
-import { PageProps } from '@/.next/types/app/api/cards/[cardId]/route';
 
+interface BoardIdPageProps {
+  params: {
+    boardId: string;
+  };
+}
 
-const BoardPage = async ({ params }: PageProps) => {
+const BoardPage = async ({ params }: BoardIdPageProps) => {
   const { boardId } = await params;
   const session = await auth()
-  if (!boardId) {
-    throw new Error("Board ID is missing in the route parameters.");
-  }
+
   const data = await getBoardsById(boardId);
   if (!data) return notFound();
 

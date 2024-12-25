@@ -2,15 +2,14 @@ import { prisma } from "@/lib/prisma";
 import { auth } from "@/auth";
 import { NextResponse } from "next/server";
 
-/* @next-codemod-ignore: Use `PageParams` type for dynamic route params */
 export async function GET(
   req: Request,
-  { params }: { params: { cardId: string } } // Abaikan error di sini
+  { params }: { params: { cardId: string } }
 ) {
+  const { cardId } = await params
   try {
-    const { cardId } = params; // Tidak perlu await di params
     const session = await auth();
-    const userId = session?.user.id;
+    const userId = session?.user.id
 
     if (!userId) {
       return new NextResponse("Unauthorized!", { status: 401 });
