@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(
   req: Request,
-  context: { params: { cardId: string } }
+  { params }: { params: { cardId: string } }
 ) {
   try {
     const session = await auth();
@@ -14,11 +14,9 @@ export async function GET(
       return new NextResponse("Unauthorized!", { status: 401 });
     }
 
-    const cardId = context.params.cardId;
-
     const card = await prisma.card.findUnique({
       where: {
-        id: cardId,
+        id: params.cardId as string,
         list: {
           board: {
             userId,
