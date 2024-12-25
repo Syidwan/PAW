@@ -9,9 +9,9 @@ import { prisma } from '@/lib/prisma';
 import { ListContainer } from '@/components/list-container';
 
 interface BoardIdPageProps {
-  params: {
+  params: Promise<{
     boardId: string;
-  };
+  }>;
 }
 
 const BoardPage = async ({ params }: BoardIdPageProps) => {
