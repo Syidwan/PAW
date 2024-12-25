@@ -9,7 +9,12 @@ import { auth } from '@/auth';
 import { prisma } from '@/lib/prisma';
 import { ListContainer } from '@/components/list-container';
 
-const BoardPage = async ({ params }: { params: { boardId: string } }) => {
+interface BoardIdPageProps {
+  params: {
+    boardId: string;
+  };
+}
+const BoardPage = async ({ params }: BoardIdPageProps) => {
   const { boardId } = params;
   const session = await auth()
   if (!boardId) {
