@@ -12,7 +12,7 @@ export default function Home() {
           Keep everything in the same place, even if your team isnt
         </p>
         <a
-          href="/register"
+          href="/sign-up"
           className="inline-block bg-[#002855] text-white py-2 px-5 rounded text-base hover:bg-[#004080]"
         >
           Sign up

@@ -1,4 +1,8 @@
-import { Card, List } from "@prisma/client"
+import { Card, List, CardOrg, ListOrg } from "@prisma/client"
+
+export type ListOrgWithCards = ListOrg & { cards: CardOrg[] }
+
+export type CardOrgWithList = CardOrg & { list: ListOrg }
 
 export type ListWithCards = List & { cards: Card[] }
 
