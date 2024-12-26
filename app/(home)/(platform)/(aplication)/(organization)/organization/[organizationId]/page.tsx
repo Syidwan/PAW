@@ -3,6 +3,7 @@ import { auth, currentUser } from '@clerk/nextjs/server'
 import Board from "../../_components/board";
 import { getBoards } from "@/lib/data-org";
 import { OrganizationSwitcher } from '@clerk/nextjs';
+import { redirect } from 'next/navigation';
 
 const dashboard = async () => {
   const { userId, orgId} = await auth()
@@ -12,6 +13,9 @@ const dashboard = async () => {
     return <div>Organization ID is missing or invalid</div>;
   }
 
+    if (!orgId) {
+      redirect("/select-org");
+    }
 
   const boards = await getBoards(orgId);
   const orderBoard = [...boards]
@@ -27,7 +31,7 @@ const dashboard = async () => {
         <h2 className="text-xl">Welcome <span className="font-bold">{session?.user?.name}</span></h2>
         <pre>{JSON.stringify(session, null, 2)}</pre> */}
 
-        <div className="grid grid-cols-3 gap-6 mt-6">
+        <div className="grid grid-cols-4 gap-6 mt-6">
           {orderBoard.map((boardOrg) => (
             <Board key={boardOrg.id} id={boardOrg.id} name={boardOrg.name} boardBg={boardOrg.background} lastAccess={boardOrg.lastAccessed} />
           ))}

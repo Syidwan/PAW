@@ -11,12 +11,11 @@ const HomeLayout = ({ children }: { children: React.ReactNode }) => {
 	const isOrganizationPage = pathname?.startsWith("/organization/")
 	const isBoardOrgPage = pathname?.startsWith("/board-org/");
 	return (
-		<SessionProvider>
+
 		<div className="flex flex-col h-screen">
 		{!isDashboardPage && !isBoardPage && !isOrganizationPage && !isBoardOrgPage && <NavbarHome />}
 			{children}
 		</div>
-		</SessionProvider>
 	)
 }
 export default HomeLayout

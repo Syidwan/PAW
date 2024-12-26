@@ -6,7 +6,7 @@ import { ClerkProvider } from '@clerk/nextjs'
 	children: React.ReactNode
  }) => {
 	return (
-	  <ClerkProvider>
+	  <ClerkProvider afterMultiSessionSingleSignOutUrl="/">
 		
 			  {children}
 	  </ClerkProvider>

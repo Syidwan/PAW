@@ -18,10 +18,10 @@ const Board: React.FC<BoardProps> = ({ id, name, boardBg }) => {
   return (
     <Link href={`/board-org/${id}`}>
       <div
-        className="bg-cover bg-center h-40 shadow-md relative"
+        className="bg-cover bg-center h-40 shadow-md relative rounded-lg"
         style={{ backgroundImage: `url(${backgroundImage})` }} // Menggunakan background image
       >
-        <div className="absolute inset-0 bg-black bg-opacity-50">
+        <div className="absolute inset-0 bg-black bg-opacity-50 rounded-lg">
           <h2 className="text-white text-lg font-bold absolute top-2 left-2">
             {name}
           </h2>
