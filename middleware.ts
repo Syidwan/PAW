@@ -1,7 +1,7 @@
 // export { auth as middleware } from "@/auth"
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
 
-const isProtectedRoute = createRouteMatcher(['/dashboard(.*)', '/organization(.*)', '/board-org(.*)', '/board(.*)'])
+const isProtectedRoute = createRouteMatcher(['/dashboard(.*)', '/organization(.*)', '/board-org(.*)', '/board(.*)', "/select-org"])
 
 export default clerkMiddleware(async (auth, req) => {
   if (isProtectedRoute(req)) {

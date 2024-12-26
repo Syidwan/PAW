@@ -109,7 +109,7 @@ const Navbar = async () => {
         </Link>
         <div className="dropdown dropdown-end">
         <UserButton
-          afterSignOutUrl="/"
+            afterSignOutUrl="/"
           appearance={{
             elements: {
               avatarBox: {

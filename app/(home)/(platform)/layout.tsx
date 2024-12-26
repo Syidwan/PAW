@@ -7,7 +7,7 @@ import { ClerkProvider } from '@clerk/nextjs'
  }) => {
 	return (
 	  <ClerkProvider>
-
+		
 			  {children}
 	  </ClerkProvider>
 	)
