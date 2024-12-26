@@ -92,7 +92,7 @@ export const DeleteButton = ({ boardId }: { boardId: string }) => {
 };
 
 export const DeleteButtonOrg = ({ boardOrgId }: { boardOrgId: string }) => {
-  const deleteBoardWithId = deleteBoard.bind(null, boardOrgId);
+  const deleteBoardWithId = deleteBoardOrg.bind(null, boardOrgId);
   
   return (
     <>

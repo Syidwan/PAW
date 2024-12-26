@@ -6,7 +6,7 @@ import CreateBoard from "./create-board";
 import {SignOutButton} from "@/components/button";
 import { BoardRecents } from "@/components/board";
 import { getBoards } from "@/lib/data-org";
-import BoardList from "@/components/board-list";
+import BoardList from "./board-list";
 import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
 
 const Navbar = async () => {

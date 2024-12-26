@@ -46,7 +46,7 @@ export const BoardRecents: React.FC<BoardProps> = ({ id, name, boardBg, lastAcce
     ? new Date(lastAccess).toLocaleTimeString("id-ID", { hour: '2-digit', minute: '2-digit', second: '2-digit' })
     : "No access yet";
   return (
-    <Link href={`/board/${id}`}>
+    <Link href={`/board-org/${id}`}>
       <div className="flex flex-row">
         <Image
           src={backgroundImage}
