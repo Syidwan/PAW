@@ -4,6 +4,7 @@ import { prisma } from "./prisma";
 import { getBoardsById } from "./data-org";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { auth } from "@clerk/nextjs/server";
 
 export const createBoard = async (formData: FormData, orgId: string) => {
   // Convert formData entries to an object
@@ -40,14 +41,24 @@ export const createBoard = async (formData: FormData, orgId: string) => {
 };
 
 export const updateBoardAccess = async (boardOrgId: string) => {
-  const data = await getBoardsById(boardOrgId);
+  const { orgId } = await auth();
+
+  if (!orgId) {
+    return { message: "Unauthorized" };
+  }
+
   try {
-    await prisma.boardOrg.update({
-      data: {
-        lastAccessed: new Date(), // Set waktu sekarang
+    const updatedBoard = await prisma.boardOrg.update({
+      where: {
+        id: boardOrgId,
+        orgId, // Memastikan board milik org yang benar
       },
-      where: { id: boardOrgId }
+      data: {
+        lastAccessed: new Date(),
+      },
     });
+
+    return { message: "Access updated successfully" };
 
   } catch (error) {
     console.error("Failed to update access:", error);

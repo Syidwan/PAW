@@ -26,6 +26,7 @@ const BoardPage = async ({ params }: BoardIdPageProps) => {
   if (!data) return notFound();
 
   await updateBoardAccess(boardOrgId);
+  
 
   const backgroundImage = data.background || "/default-background.jpg"; // gunakan background dari data.board atau default
 

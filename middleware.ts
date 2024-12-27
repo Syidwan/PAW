@@ -1,5 +1,9 @@
 // export { auth as middleware } from "@/auth"
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
+import { auth } from '@clerk/nextjs/server'
+import { NextResponse } from 'next/server'
+
+const isPublicRoute = createRouteMatcher(['/sign-in(.*)', '/sign-up(.*)', '/'])
 
 const isProtectedRoute = createRouteMatcher(['/dashboard(.*)', '/organization(.*)', '/board-org(.*)', '/board(.*)', "/select-org"])
 
@@ -8,6 +12,17 @@ export default clerkMiddleware(async (auth, req) => {
     await auth.protect()
     
   }
+
+
+  
+  // const session = await auth()
+  // if (session.userId) {
+  //   let path = "/select-org";
+
+  //   if (session.orgId) {
+  //     path = `/organization/${session.orgId}`;
+  //   }
+  // }
 })
 
 

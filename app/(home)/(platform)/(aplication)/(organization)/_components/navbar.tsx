@@ -8,6 +8,7 @@ import { BoardRecents } from "@/components/board";
 import { getBoards } from "@/lib/data-org";
 import BoardList from "./board-list";
 import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
+import Logo from "./logo";
 
 const Navbar = async () => {
   const {userId, orgId} = await auth();
@@ -19,15 +20,7 @@ const Navbar = async () => {
   return  (
     <nav className="w-full flex justify-between items-center bg-white p-2 shadow h-12 sticky top-0 z-10">
       <div className="flex items-center space-x-8 ml-6">
-        <Link href={`/organization/${orgId}`}>
-          <Image
-            src="/img/Logo.png"
-            alt="PAW Logo"
-            width={110}
-            height={32}
-            className="h-8 w-auto object-cover"
-          />
-        </Link>
+        <Logo/>
         <div className="dropdown">
           <div
             tabIndex={0}
