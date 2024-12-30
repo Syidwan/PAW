@@ -79,7 +79,7 @@ const Navbar = async () => {
         </div>
       </div>
       <div className="flex items-center space-x-1 mr-4">
-        <Link
+        {/* <Link
           href="/notifications"
           className="hover:bg-gray-100 p-2 rounded-full"
         >
@@ -99,7 +99,7 @@ const Navbar = async () => {
             height={24}
             className="w-6 h-6"
           />
-        </Link>
+        </Link> */}
         <div className="dropdown dropdown-end">
         <UserButton
             afterSignOutUrl="/"

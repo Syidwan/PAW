@@ -1,22 +1,24 @@
-// components/Board.tsx
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect } from "react";
-import { updateBoardAccess } from "@/lib/actions";
+import React from "react";
+import { updateBoardAccess } from "@/lib/actions-org";
 
 interface BoardProps {
   id: string;
   name: string;
   boardBg: string;
-  lastAccess: Date | null;
+  lastAccess?: Date | null; // Optional for BoardRecents
 }
 
 const Board: React.FC<BoardProps> = ({ id, name, boardBg }) => {
+  const handleClick = async () => {
+    await updateBoardAccess(id); // Panggil fungsi hanya saat klik
+  };
 
   const backgroundImage = boardBg || "/img/bgproject.jpg";
   return (
-    <Link href={`/board-org/${id}`}>
+    <Link href={`/board-org/${id}`} onClick={handleClick}>
       <div
         className="bg-cover bg-center h-40 shadow-md relative rounded-lg"
         style={{ backgroundImage: `url(${backgroundImage})` }} // Menggunakan background image
@@ -40,13 +42,27 @@ const Board: React.FC<BoardProps> = ({ id, name, boardBg }) => {
 
 export default Board;
 
-export const BoardRecents: React.FC<BoardProps> = ({ id, name, boardBg, lastAccess }) => {
+export const BoardRecents: React.FC<BoardProps> = ({
+  id,
+  name,
+  boardBg,
+  lastAccess,
+}) => {
+  const handleClick = async () => {
+    await updateBoardAccess(id); // Panggil fungsi hanya saat klik
+  };
+
   const backgroundImage = boardBg || "/img/bgproject.jpg";
   const formattedLastAccess = lastAccess
-    ? new Date(lastAccess).toLocaleTimeString("id-ID", { hour: '2-digit', minute: '2-digit', second: '2-digit' })
+    ? new Date(lastAccess).toLocaleTimeString("id-ID", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      })
     : "No access yet";
+
   return (
-    <Link href={`/board-org/${id}`}>
+    <Link href={`/board-org/${id}`} onClick={handleClick}>
       <div className="flex flex-row">
         <Image
           src={backgroundImage}

@@ -130,6 +130,7 @@ export const updateBoardAccess = async (boardId: string) => {
       where: { id: boardId }
     });
 
+    
   } catch (error) {
     console.error("Failed to update access:", error);
     return { message: "Failed to update access" };

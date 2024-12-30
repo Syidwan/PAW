@@ -57,7 +57,7 @@ export const updateBoardAccess = async (boardOrgId: string) => {
         lastAccessed: new Date(),
       },
     });
-
+    revalidatePath(`/boards-org/${boardOrgId}`)
     return { message: "Access updated successfully" };
 
   } catch (error) {
