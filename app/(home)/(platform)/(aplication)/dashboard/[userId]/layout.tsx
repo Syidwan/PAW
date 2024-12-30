@@ -9,8 +9,8 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <Navbar />
-      <div className="flex bg-gradient-to-b from-[#70C3FF] via-[#70C3FF] to-[#266CA9]">
-        <Sidebar />
+      <div className="flex bg-gradient-to-b from-[#70C3FF] via-[#70C3FF] to-[#266CA9] min-h-screen">
+        {/* <Sidebar /> */}
         {children}
       </div>
       <ToastNotification />

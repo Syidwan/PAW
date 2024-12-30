@@ -45,7 +45,7 @@ const Navbar = async () => {
           <BoardList userId={session.user.id} recentBoards={recentBoard}/>
         </div>
 
-        <div className="flex items-center space-x-0.5">
+        {/* <div className="flex items-center space-x-0.5">
           <Link
             href="/starred"
             className="px-2 py-1 text-sm hover:text-blue-500"
@@ -59,7 +59,7 @@ const Navbar = async () => {
             height={8}
             className="w-3 h-2"
           />
-        </div>
+        </div> */}
         {/* <Link
           href="/create"
           className="bg-[#041D56] text-white px-3 py-1 rounded-lg ml-9 hover:bg-[#70C3FF]"
@@ -83,7 +83,7 @@ const Navbar = async () => {
         </div>
       </div>
       <div className="flex items-center space-x-1 mr-4">
-        <Link
+        {/* <Link
           href="/notifications"
           className="hover:bg-gray-100 p-2 rounded-full"
         >
@@ -103,7 +103,7 @@ const Navbar = async () => {
             height={24}
             className="w-6 h-6"
           />
-        </Link>
+        </Link> */}
         <div className="dropdown dropdown-end">
           <div
             tabIndex={0}
