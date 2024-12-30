@@ -86,6 +86,7 @@ model Product {
 model Board {
   id          String    @id @default(cuid())
   name        String
+  orgId       String?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime   @updatedAt
   userId      String
@@ -99,6 +100,56 @@ model Board {
   // Linking User and Boards
   user        User @relation("UserBoards", fields: [userId], references: [id], onDelete: Cascade)
 }
+
+model BoardOrg {
+  id          String    @id @default(cuid())
+  name        String
+  orgId       String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime   @updatedAt
+  background  String
+  lastAccessed DateTime?
+
+  // Relationships
+  lists       ListOrg[]
+}
+
+model ListOrg {
+  id          String    @id @default(cuid())
+  name        String
+  order       Int
+  boardOrgId  String
+
+  // Relationship with BoardOrg
+  boardOrg    BoardOrg @relation(fields: [boardOrgId], references: [id], onDelete: Cascade)
+  cards       CardOrg[]
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([boardOrgId])
+}
+
+model CardOrg {
+  id          String   @id @default(cuid())
+  name        String
+  order       Int
+  description String? @db.Text
+  attachment  String?
+  checklist   Boolean @default(false)
+  dueDate     DateTime?
+
+  listOrgId   String
+
+  // Relationship with ListOrg
+  listOrg     ListOrg @relation(fields: [listOrgId], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([listOrgId])
+}
+
 
 model List {
   id          String    @id @default(cuid())
@@ -148,3 +199,4 @@ model UserBoard {
 
   @@map("userboards")
 }
+

@@ -2,6 +2,7 @@
 import { useFormStatus } from "react-dom";
 import { signOut } from "next-auth/react";
 import { deleteBoard } from "@/lib/actions";
+import { deleteBoardOrg } from "@/lib/actions-org";
 
 export const RegisterButton = () => {
   const { pending } = useFormStatus();
@@ -90,6 +91,35 @@ export const DeleteButton = ({ boardId }: { boardId: string }) => {
   );
 };
 
+export const DeleteButtonOrg = ({ boardOrgId }: { boardOrgId: string }) => {
+  const deleteBoardWithId = deleteBoardOrg.bind(null, boardOrgId);
+  
+  return (
+    <>
+      <label
+        htmlFor="my_modal_6"
+        className="btn rounded-md bg-red-800 border-none text-white hover:bg-red-700"
+      >
+        Delete
+      </label>
+      <input type="checkbox" id="my_modal_6" className="modal-toggle" />
+      <div className="modal" role="dialog">
+        <div className="modal-box">
+          <h3 className="text-lg font-bold">Delete</h3>
+          <p className="py-4">Are you sure you want to delete this board?</p>
+          <div className="modal-action">
+            <label htmlFor="my_modal_6" className="btn">
+              Cancel
+            </label>
+            <form action={deleteBoardWithId} className="rounded-md bg-red-700 hover:bg-red-500">
+              <DeleteBtn/>
+            </form>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
 const DeleteBtn = () => {
   const { pending } = useFormStatus()
   return (

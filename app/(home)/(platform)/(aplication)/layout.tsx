@@ -8,13 +8,14 @@ const HomeLayout = ({ children }: { children: React.ReactNode }) => {
 	const pathname = usePathname(); // Ambil pathname saat ini
 	const isDashboardPage = pathname?.startsWith("/dashboard"); // Cek jika di halaman dashboard
 	const isBoardPage = pathname?.startsWith("/board/"); // Cek jika di halaman board
+	const isOrganizationPage = pathname?.startsWith("/organization/")
+	const isBoardOrgPage = pathname?.startsWith("/board-org/");
 	return (
-		<SessionProvider>
+
 		<div className="flex flex-col h-screen">
-		{!isDashboardPage && !isBoardPage && <NavbarHome />}
+		{!isDashboardPage && !isBoardPage && !isOrganizationPage && !isBoardOrgPage && <NavbarHome />}
 			{children}
 		</div>
-		</SessionProvider>
 	)
 }
 export default HomeLayout
