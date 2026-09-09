@@ -12,7 +12,7 @@ const HomeLayout = ({ children }: { children: React.ReactNode }) => {
 	const isBoardOrgPage = pathname?.startsWith("/board-org/");
 	return (
 
-		<div className="flex flex-col h-screen">
+		<div className="flex flex-col min-h-screen">
 		{!isDashboardPage && !isBoardPage && !isOrganizationPage && !isBoardOrgPage && <NavbarHome />}
 			{children}
 		</div>

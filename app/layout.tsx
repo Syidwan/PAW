@@ -1,26 +1,26 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/navbar";
 import { Toaster } from 'sonner';
 import { ModalProvider } from "@/components/providers/modal-provider";
 import { QueryProvider } from "@/components/providers/query-provider";
 import { ModalProviderOrg } from "@/components/providers/modal-provider-org";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+  display: "swap",
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "PAW",
-  description: "Project Assistant Web",
+  title: "PAW — Project Assistant Web",
+  description: "Manage projects with clarity and confidence. PAW brings your tasks, teammates, and tools together in one elegant workspace.",
 };
 
 export default function RootLayout({
@@ -30,17 +30,17 @@ export default function RootLayout({
 }>) {
   return (
     <QueryProvider>
-      
       <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+        <body
+          className={`${playfair.variable} ${inter.variable} font-sans antialiased`}
+        >
           <main>{children}</main>
-          <ModalProviderOrg/>
-          {/* <ModalProvider/> */}
-        <Toaster />
-      </body>
-    </html>
+          <ModalProviderOrg />
+          {/* <ModalProvider /> */}
+          <Toaster />
+        </body>
+      </html>
     </QueryProvider>
   );
 }
+
